@@ -43,7 +43,7 @@ const ProfileDropDown = () => {
             <p className="text-balance">{session?.user?.email}</p>
           </DropdownMenuItem>
         )}
-
+        
         {session?.user && (
           <>
             <DropdownMenuSeparator />

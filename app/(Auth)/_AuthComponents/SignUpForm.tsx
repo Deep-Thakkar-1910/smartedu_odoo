@@ -50,7 +50,7 @@ const SignUpForm = () => {
           description: "Account Creaeted Successfully",
           action: (
             <ToastAction altText="sign In">
-              <Link href={"/signin"}>Check Your Email</Link>
+              <Link href={"/signin"}>SignIn</Link>
             </ToastAction>
           ),
         });

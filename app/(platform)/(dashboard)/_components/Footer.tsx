@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export default function Footer() {
   return (
-    <footer className="bg-muted py-4 w-full border-t">
+    <footer className="fixed left-0 bottom-0 bg-muted py-4 w-full border-t">
       <div className="container max-w-7xl flex flex-col md:flex-row items-center justify-between px-4 md:px-6">
         <Link href={"/"}>
           <Image

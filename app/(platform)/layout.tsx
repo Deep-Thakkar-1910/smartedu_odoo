@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import { cn } from '@/lib/utils'
-import './globals.css'
+
 import { ReactNode } from 'react'
 
 const fontHeading = Inter({
@@ -17,16 +17,8 @@ const fontBody = Inter({
 
 export default function Layout({ children }:{children:ReactNode}) {
   return (
-    <html lang="en">
-      <body 
-        className={cn(
-          'antialiased',
-          fontHeading.variable,
-          fontBody.variable
-        )}
-      >
+   <>
         {children}
-      </body>
-    </html>
+    </>
   )
 }

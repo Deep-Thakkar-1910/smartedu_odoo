@@ -20,9 +20,11 @@ model User {
   name     String?
   password String?
   email    String?   @unique
+  role     String   @default("user")
   image    String?
   accounts Account[]
   sessions Session[]
+
 
   @@map("users")
 }

@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Search } from "lucide-react";
 import { NavLinks } from "@/lib/utilities/Navlinks";
 import MobileSidebar from "./MobileNavigation";
 import ProfileDropDown from "./ProfileDropDown";
@@ -43,7 +42,7 @@ const Navbar = () => {
         className="hidden items-center gap-x-3 lg:flex xl:gap-x-5"
         role="tablist"
       >
-        {session?.user.role === "admin" && (
+        {session?.user?.role === "admin" && (
           <li role="tab">
             <Link href={"/admin"}>
               <button

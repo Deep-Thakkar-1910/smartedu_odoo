@@ -189,7 +189,7 @@ const SignUpForm = () => {
         <Button
           type="button"
           className="flex w-full items-center gap-x-4 place-self-center rounded-lg bg-slate-100 text-black hover:bg-white hover:shadow-md dark:bg-app-dark dark:text-slate-200 dark:hover:bg-zinc-950"
-          onClick={() => signIn("google")}
+          onClick={() => signIn("google", { callbackUrl: "/" })}
         >
           Sign In with Google
           <GoogleIcon />

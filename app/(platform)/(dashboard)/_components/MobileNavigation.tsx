@@ -40,10 +40,9 @@ const MobileSidebar = () => {
   return (
     <aside>
       <Menu className="size-6" onClick={onOpen} />
-
       <Sheet open={isOpen} onOpenChange={onClose}>
         <SheetContent
-        side={"right"}
+          side={"right"}
           className="flex w-10/12 flex-col items-center justify-around border-l bg-white dark:bg-app-dark-navbar sm:w-2/3 md:w-2/5 lg:hidden"
         >
           <SheetHeader className="w-full ">
@@ -62,7 +61,7 @@ const MobileSidebar = () => {
                     <button
                       className={cn(
                         "text-2xl font-medium",
-                        isCurrent("admin") && "text-app-main",
+                        isCurrent("admin") && "text-app-main"
                       )}
                     >
                       Admin
@@ -77,7 +76,7 @@ const MobileSidebar = () => {
                       <button
                         className={cn(
                           "text-2xl font-medium",
-                          isCurrent(link.href.slice(1)) && "text-app-main",
+                          isCurrent(link.href.slice(1)) && "text-app-main"
                         )}
                       >
                         {link.title}

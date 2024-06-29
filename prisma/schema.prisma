@@ -89,6 +89,7 @@ model Event {
 
   @@map("events")
 }
+
 model Classroom {
   id        String   @id @default(cuid())
   name      String
@@ -98,6 +99,7 @@ model Classroom {
 
   @@map("classrooms")
 }
+
 model Course {
   id          String   @id @default(cuid())
   name        String
@@ -108,3 +110,6 @@ model Course {
 
   @@map("courses")
 }
+
+}
+

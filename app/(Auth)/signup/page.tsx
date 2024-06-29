@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 const SignUpPage = () => {
   return (
-    <article className="flex flex-col items-center gap-4 pt-20">
+    <article className="mb-6 flex flex-col items-center gap-4 pt-20">
       <h1 className="text-4xl md:text-5xl">Join Now</h1>
       <p className="text-sm">
         Already have an account?{" "}
@@ -19,7 +19,7 @@ const SignUpPage = () => {
         </span>
       </p>
       {/* Form container div */}
-      <div className="flex w-11/12 flex-col items-center justify-center rounded-lg border-2 bg-white p-6 dark:bg-app-dark-navbar sm:w-full ">
+      <div className="flex w-11/12 flex-col items-center justify-center rounded-lg border-2 max-w-64 sm:max-w-96 md:max-w-[30rem] bg-white p-6 dark:bg-app-dark-navbar sm:w-full ">
         <SignUpForm />
         {/* Terms and conditions statement */}
         <p className="mx-auto mt-4 text-center text-xs font-semibold">

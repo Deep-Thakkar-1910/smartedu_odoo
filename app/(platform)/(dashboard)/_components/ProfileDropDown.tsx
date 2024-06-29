@@ -3,13 +3,9 @@
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ArrowLeftFromLine, Moon, Sun, UserCircle2 } from "lucide-react";
@@ -47,7 +43,7 @@ const ProfileDropDown = () => {
             <p className="text-balance">{session?.user?.email}</p>
           </DropdownMenuItem>
         )}
-       
+
         {session?.user && (
           <>
             <DropdownMenuSeparator />

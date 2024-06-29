@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import AuthButtons from "./AuthButtons";
 import { useSession } from "next-auth/react";
+
 const Navbar = () => {
   const pathname = usePathname();
   const paths = pathname.split("/");
@@ -23,18 +24,11 @@ const Navbar = () => {
       {/* Branding */}
       <Link href={"/"}>
         <Image
-          src={"/Logos/logo.png"}
+          src={"/Logos/Edify.png"}
           alt="Logo"
-          width={500}
           height={500}
-          className="hidden h-20 w-60 lg:inline-block"
-        />
-        <Image
-          src={"/Logos/favicon.png"}
-          alt="Logo"
-          width={200}
-          height={200}
-          className="size-8 sm:size-12 md:size-14 lg:hidden"
+          width={500}
+          className="size-12 lg:size-20"
         />
       </Link>
 
@@ -48,7 +42,7 @@ const Navbar = () => {
               <button
                 className={cn(
                   "text-sm font-medium transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-b-2 hover:border-b-app-main hover:text-app-main xl:text-base",
-                  isCurrent("admin") && "text-app-main",
+                  isCurrent("admin") && "text-app-main"
                 )}
               >
                 Admin
@@ -63,7 +57,7 @@ const Navbar = () => {
                 <button
                   className={cn(
                     "text-sm font-medium transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-b-2 hover:border-b-app-main hover:text-app-main xl:text-base",
-                    isCurrent(link.href.slice(1)) && "text-app-main",
+                    isCurrent(link.href.slice(1)) && "text-app-main"
                   )}
                 >
                   {link.title}

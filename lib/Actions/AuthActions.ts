@@ -8,7 +8,10 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 // Server action for Regitsering users
 // NOTE: The omit type is used to remove the fields that are not required for the backend
 export const registerUser = async (
-  userData: Omit<User, "id" | "createdAt" | "updatedAt" | "image" | "role">
+  userData: Omit<
+    User,
+    "id" | "emailVerified" | "createdAt" | "updatedAt" | "image" | "role"
+  >
 ) => {
   try {
     const newUser = await db.user.create({

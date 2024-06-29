@@ -1,89 +1,92 @@
-import React from 'react'
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Card, CardHeader, CardContent } from "@/components/ui/card"
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { Search } from "lucide-react";
+import { NavLinks } from "@/lib/utilities/Navlinks";
+import MobileSidebar from "./MobileNavigation";
+import ProfileDropDown from "./ProfileDropDown";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import AuthButtons from "./AuthButtons";
+import { useSession } from "next-auth/react";
 const Navbar = () => {
+  const pathname = usePathname();
+  const paths = pathname.split("/");
+  const isCurrent = (href: string): boolean => {
+    // checking if current pathname has the current link
+    // if yes return true for coloring the active link else return false
+    if (paths.includes(href)) return true;
+    return false;
+  };
+  const { data: session } = useSession();
   return (
-    <>
-    <header className="sticky top-0 z-40 border-b bg-background px-4 py-3 sm:px-6">
-        <div className="container mx-auto flex items-center justify-between">
-          <Link href="#" className="flex items-center gap-2" prefetch={false}>
-            <BookIcon className="h-6 w-6 text-primary" />
-            <span className="text-lg font-bold">Edify</span>
-          </Link>
-          <nav className="hidden items-center gap-4 sm:flex">
-            <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
-              Dashboard
+    <nav className="fixed left-0 top-0 z-50 flex h-16 w-full items-center justify-between border-b border-b-app-main bg-white p-4 px-2 dark:bg-app-dark-navbar sm:px-4 md:px-6 lg:h-20 xl:px-12">
+      {/* Branding */}
+      <Link href={"/"}>
+        <Image
+          src={"/Logos/logo.png"}
+          alt="Logo"
+          width={500}
+          height={500}
+          className="hidden h-20 w-60 lg:inline-block"
+        />
+        <Image
+          src={"/Logos/favicon.png"}
+          alt="Logo"
+          width={200}
+          height={200}
+          className="size-8 sm:size-12 md:size-14 lg:hidden"
+        />
+      </Link>
+
+      <ul
+        className="hidden items-center gap-x-3 lg:flex xl:gap-x-5"
+        role="tablist"
+      >
+        {session?.user.role === "admin" && (
+          <li role="tab">
+            <Link href={"/admin"}>
+              <button
+                className={cn(
+                  "text-sm font-medium transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-b-2 hover:border-b-app-main hover:text-app-main xl:text-base",
+                  isCurrent("admin") && "text-app-main",
+                )}
+              >
+                Admin
+              </button>
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
-              Courses
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
-              Assessments
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
-              Resources
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
-              Collaborate
-            </Link>
-          </nav>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="sm:hidden">
-              <MenuIcon className="h-6 w-6" />
-            </Button>
-            <Avatar className="h-8 w-8 border">
-              <AvatarImage src="/placeholder-user.jpg" />
-              <AvatarFallback>AC</AvatarFallback>
-            </Avatar>
-          </div>
+          </li>
+        )}
+        {NavLinks.map((link, index) => {
+          return (
+            <li key={index} role="tab">
+              <Link href={link.href}>
+                <button
+                  className={cn(
+                    "text-sm font-medium transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-b-2 hover:border-b-app-main hover:text-app-main xl:text-base",
+                    isCurrent(link.href.slice(1)) && "text-app-main",
+                  )}
+                >
+                  {link.title}
+                </button>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+
+      <div className="flex items-center gap-x-2 sm:gap-x-3">
+        {/* Search bar */}
+        <div className="lg:hidden">
+          <MobileSidebar />
         </div>
-      </header>
-    </>
-)
-}
+        <div className="hidden items-center gap-x-4 lg:flex">
+          <AuthButtons />
+          <ProfileDropDown />
+        </div>
+      </div>
+    </nav>
+  );
+};
 
-
-
-function BookIcon(props:any) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-      </svg>
-   )
-}
-
-function MenuIcon(props:any) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <line x1="4" x2="20" y1="12" y2="12" />
-        <line x1="4" x2="20" y1="6" y2="6" />
-        <line x1="4" x2="20" y1="18" y2="18" />
-      </svg>
-    )
-  }
-
-export default Navbar
+export default Navbar;

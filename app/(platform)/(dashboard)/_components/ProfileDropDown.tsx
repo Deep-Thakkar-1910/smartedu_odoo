@@ -43,11 +43,7 @@ const ProfileDropDown = () => {
             <p className="text-balance">{session?.user?.email}</p>
           </DropdownMenuItem>
         )}
-<<<<<<< Updated upstream
-
-=======
         
->>>>>>> Stashed changes
         {session?.user && (
           <>
             <DropdownMenuSeparator />

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     default: "Smart Edu",
   },
   description: "Smart Education Platform for Everyone",
+  icons: "/Logos/Edify.png",
 };
 
 export default function RootLayout({
@@ -24,12 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-
         <Providers>
-          <Navbar/>
+          <Navbar />
           {children}
           <Toaster />
-          </Providers>
+        </Providers>
       </body>
     </html>
   );

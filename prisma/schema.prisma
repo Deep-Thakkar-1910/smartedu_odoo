@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
@@ -67,6 +61,34 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verificationtokens")
 }
+model Student {
+  id       String       @id @default(cuid())
+  name     String
+  progress Int
+  status   String
+  
+  assignments Assignment[]
+
+  @@map("students")
+}
+
+model Assignment {
+  id        String   @id @default(cuid())
+  title     String
+  grade     String?
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+
+  @@map("assignments")
+}
+
+model Event {
+  id        String   @id @default(cuid())
+  title     String
+  date      DateTime
+
+  @@map("events")
+}
 
 model Classroom {
   id        String   @id @default(cuid())
@@ -88,3 +110,6 @@ model Course {
 
   @@map("courses")
 }
+
+}
+
